@@ -1,12 +1,18 @@
 import beerRepo from '../repositories/beerRepo.js';
 
 export const getBeers = async () => {
+    console.log("0")
+
     const beers = await beerRepo.selectAll();
+    console.log("1")
 
     var result = new Array();
+    console.log("2")
 
+    
     beers.rows.map((beer) => {
         var obj = new Object();
+        console.log("3")
 
         beers.rowDescription.columns.map((el, i) => {
             obj[el.name] = beer[i];
@@ -31,6 +37,9 @@ export const getBeer = async (beerId) => {
 };
 
 export const createBeer = async (beerData) => {
+    console.log(beerData);
+    console.log("service");
+
     const newBeer = {
         name: String(beerData.name),
         brand: String(beerData.brand),

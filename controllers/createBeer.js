@@ -8,8 +8,9 @@ export default async ({ request, response }) => {
     }
 
     const {
-        value: { name, brand, is_premium },
-    } = await request.body();
+        name ,brand ,ispremiun
+    } = await request.body().value;
+
 
     if (!name || !brand) {
         response.status = 422;
@@ -17,7 +18,7 @@ export default async ({ request, response }) => {
         return;
     }
 
-    const beerId = await createBeer({ name, brand, is_premium });
+    const beerId = await createBeer({ name, brand, is_premium :ispremiun });
 
     response.body = { msg: 'Beer created', beerId };
 };
